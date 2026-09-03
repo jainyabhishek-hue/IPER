@@ -19,21 +19,22 @@
   --ease-out:cubic-bezier(.22,1,.36,1); --ease-spring:cubic-bezier(.34,1.56,.64,1);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{height:100%}
+html,body{height:100%;min-height:100%;-webkit-text-size-adjust:100%}
+@supports(-webkit-touch-callout:none){html,body{height:-webkit-fill-available}.stage{height:-webkit-fill-available}}
 body{
   font-family:var(--body);color:var(--bone);background:var(--night);
   -webkit-user-select:none;user-select:none;-webkit-touch-callout:none;overflow:hidden;
   font-size:14px;line-height:1.45;
 }
 /* floodlit night sky */
-.sky{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+.sky{position:fixed;top:0;left:0;right:0;bottom:0;inset:0;z-index:0;pointer-events:none;overflow:hidden;
   background:
     radial-gradient(120% 70% at 50% -20%, rgba(94,194,255,.20), transparent 60%),
     radial-gradient(60% 40% at 15% 110%, rgba(61,220,151,.14), transparent 60%),
     radial-gradient(60% 40% at 90% 105%, rgba(246,196,83,.10), transparent 60%),
     linear-gradient(180deg,#0d1c34 0%, var(--night) 60%, #070f1c 100%);
 }
-.sky::before{content:"";position:absolute;inset:-10%;
+.sky::before{content:"";position:absolute;top:-10%;left:-10%;right:-10%;bottom:-10%;inset:-10%;
   background:repeating-linear-gradient(90deg, rgba(255,255,255,.018) 0 42px, transparent 42px 84px);
   transform:perspective(600px) rotateX(62deg) translateY(30%);transform-origin:bottom;opacity:.7}
 .sky::after{content:"";position:absolute;left:50%;top:-40vh;width:120vw;height:80vh;transform:translateX(-50%);
@@ -63,7 +64,7 @@ body{
 .ring.warn .arc{stroke:var(--gold);filter:drop-shadow(0 0 6px rgba(246,196,83,.5))}
 .ring.danger .arc{stroke:var(--ball);filter:drop-shadow(0 0 8px rgba(227,69,58,.7))}
 .ring.danger #timer{color:var(--ball);animation:tick .5s ease-in-out infinite alternate}
-#timer{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:24px;line-height:1;color:var(--bone);font-variant-numeric:tabular-nums}
+#timer{position:absolute;top:0;left:0;right:0;bottom:0;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:24px;line-height:1;color:var(--bone);font-variant-numeric:tabular-nums}
 #timer span{font-size:9px;font-family:var(--body);font-weight:700;color:var(--muted);margin-top:-2px;display:block;text-align:center}
 @keyframes tick{from{transform:scale(1)}to{transform:scale(1.12)}}
 /* 20-ball strip */
@@ -86,10 +87,10 @@ body{
 .eyebrow{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.04em}
 label{display:block;font-size:11px;font-weight:700;color:var(--muted);margin:0 0 6px 2px}
 .input-field{width:100%;background:rgba(6,14,28,.75);border:1px solid var(--line-2);border-radius:var(--r-sm);padding:12px 12px;color:var(--bone);
-  font-family:var(--body);font-size:15px;font-weight:700;outline:none;transition:border-color .2s, box-shadow .2s;-webkit-user-select:text;user-select:text}
+  font-family:var(--body);font-size:16px;font-weight:700;outline:none;-webkit-appearance:none;appearance:none;transition:border-color .2s, box-shadow .2s;-webkit-user-select:text;user-select:text}
 .input-field::placeholder{color:var(--muted-2);font-weight:600}
 .input-field:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(94,194,255,.18)}
-button{font-family:var(--body);font-weight:700;color:var(--bone);background:var(--panel-2);border:1px solid var(--line-2);border-radius:var(--r-sm);
+button{-webkit-appearance:none;appearance:none;touch-action:manipulation;font-family:var(--body);font-weight:700;color:var(--bone);background:var(--panel-2);border:1px solid var(--line-2);border-radius:var(--r-sm);
   padding:11px 10px;font-size:13px;cursor:pointer;transition:transform .12s var(--ease-out), background .2s, border-color .2s, box-shadow .2s, color .2s}
 button:active{transform:scale(.96)}
 button:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
@@ -106,8 +107,8 @@ button:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
 .crest{width:84px;height:84px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;position:relative;
   background:radial-gradient(circle at 35% 30%,#ff8a7c,#c2281c 60%,#7a1208);box-shadow:0 14px 30px -10px rgba(227,69,58,.8), inset -6px -8px 14px rgba(0,0,0,.35);
   animation:seam 6s ease-in-out infinite}
-.crest::before{content:"";position:absolute;inset:8px;border-radius:50%;border:2px dashed rgba(255,255,255,.55);transform:rotate(25deg)}
-.crest::after{content:"";position:absolute;inset:14px;border-radius:50%;border:2px dashed rgba(255,255,255,.55);transform:rotate(25deg)}
+.crest::before{content:"";position:absolute;top:8px;left:8px;right:8px;bottom:8px;inset:8px;border-radius:50%;border:2px dashed rgba(255,255,255,.55);transform:rotate(25deg)}
+.crest::after{content:"";position:absolute;top:14px;left:14px;right:14px;bottom:14px;inset:14px;border-radius:50%;border:2px dashed rgba(255,255,255,.55);transform:rotate(25deg)}
 .crest span{font-size:36px;position:relative;filter:drop-shadow(0 4px 6px rgba(0,0,0,.4))}
 @keyframes seam{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-6px) rotate(8deg)}}
 .title-lg{font-size:44px;color:var(--bone)}
@@ -147,7 +148,7 @@ button:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
 .sel-dec.selected-btn{background:linear-gradient(180deg,#ff9a90,#e3453a)!important;color:#3a0a06!important;box-shadow:0 8px 18px -8px rgba(227,69,58,.9)!important}
 
 /* overlay + result */
-.overlay{position:absolute;inset:-4px;border-radius:var(--r-lg);background:rgba(5,10,20,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+.overlay{position:absolute;top:-4px;left:-4px;right:-4px;bottom:-4px;inset:-4px;border-radius:var(--r-lg);background:rgba(5,10,20,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   display:flex;align-items:center;justify-content:center;z-index:50;animation:fadeIn .25s both;overflow:hidden}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 .pop-card{background:linear-gradient(180deg,#152d52,#0f2140);border:1px solid var(--line-2);border-radius:var(--r-lg);padding:26px 22px 20px;width:92%;max-width:330px;
@@ -166,7 +167,7 @@ button:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
 .verify p{font-size:12px;color:#cfd8e6;line-height:1.5}
 .shake{animation:shake .5s}
 @keyframes shake{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(4px)}30%,50%,70%{transform:translateX(-6px)}40%,60%{transform:translateX(6px)}}
-.flash{position:absolute;inset:0;pointer-events:none;border-radius:var(--r-lg);animation:flash .6s ease-out both}
+.flash{position:absolute;top:0;left:0;right:0;bottom:0;inset:0;pointer-events:none;border-radius:var(--r-lg);animation:flash .6s ease-out both}
 .flash.red{background:rgba(227,69,58,.35)} .flash.gold{background:rgba(246,196,83,.25)}
 @keyframes flash{from{opacity:1}to{opacity:0}}
 .confetti{position:absolute;top:-10px;width:8px;height:14px;border-radius:2px;opacity:0;animation:fall linear both;pointer-events:none}
@@ -233,6 +234,8 @@ button:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
 </div>
 
 <script>
+window.addEventListener("error",function(e){try{var c=document.getElementById("commentary");if(c){c.className="neg";c.innerHTML="<p>Umpire error: "+(e.message||e)+"</p>";}}catch(_){}});
+window.addEventListener("unhandledrejection",function(e){try{var c=document.getElementById("commentary");if(c){c.className="neg";c.innerHTML="<p>Umpire error: "+(e.reason&&e.reason.message||e.reason)+"</p>";}}catch(_){}});
 // =====================================================================
 //  GOOGLE SHEETS SCORE COLLECTION - CONFIGURATION
 //  1. Create a Google Sheet.  2. Extensions > Apps Script > paste Code.gs.
@@ -252,7 +255,7 @@ let currentIdx = 0, totalRuns = 0, timerInterval = null, timeLeft = 30, currentR
 let currentSelection = { leg1:{e:null,d:null}, leg2:{e:null,d:null} };
 let matchLog = [], identifiedCompany = "Corporate Enterprise", isQuestionActive = false;
 let syncState = { status:"idle", message:"" };
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
 const corporateDatabase = {
     "Reliance Industries": [
@@ -626,7 +629,7 @@ function renderGameOverSummary(){
   setCommentaryText(`Innings closed. A fine knock from ${playerName}.`,true);
 }
 
-window.onload=loadWelcomeView;
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',loadWelcomeView); else loadWelcomeView();
 </script>
 </body>
 </html>
